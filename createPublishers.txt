@@ -1,0 +1,18 @@
+publishers = ['Random House','Penguin','Simon and Schuster','Hachette','Macmillan']
+def fakeNumber():
+    import random as rand
+    fakeNumber = str( rand.randint(100,999) ) + '-' + str( rand.randint(100,999) ) + '-' + str( rand.randint(1000,9999) )
+    return fakeNumber
+
+from faker import Faker
+string_to_print = ""
+for i in publishers:
+    fake = Faker()
+    phone = fakeNumber()
+    address = fake.address().replace("\n",", ")
+    string_to_print = string_to_print + "("+ "'" + i + "'" + ", " + "'" + address + "'" + "," + "'" + phone + "'" + ")" + "\n"
+print(string_to_print)
+
+textFile = open('createPublishers.txt','w')
+textFile.write(string_to_print)
+textFile.close()
